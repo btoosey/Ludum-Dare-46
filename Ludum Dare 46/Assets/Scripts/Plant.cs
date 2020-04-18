@@ -40,6 +40,10 @@ public class Plant : MonoBehaviour
     public void GainHealth(int health)
     {
         currentHealth += health;
+        if (currentHealth > 30)
+        {
+            currentHealth = 30;
+        }
 
         healthbar.SetHealth(currentHealth);
     }
