@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
+    public GameObject plant;
 
     Vector2 movement;
 
@@ -19,5 +20,14 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    void OnTriggerEnter2D(Collider2D triggerCollider)
+    {
+        if (triggerCollider.tag == "Fly")
+        {
+            Destroy(triggerCollider.gameObject);
+            plant.GetComponent<Plant>().GainHealth(2);
+        }
     }
 }
