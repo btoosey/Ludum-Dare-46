@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed;
     public Rigidbody2D rb;
     public GameObject plant;
     public Animator animator;
+    public int flies;
 
     Vector2 movement;
 
-    // Update is called once per frame
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -20,11 +20,21 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
+        SetSpeed();
+        if (GameObject.FindGameObjectsWithTag("Fly").Length == 0)
+        {
+            FindObjectOfType<GameManager>().Win();
+        }
     }
 
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    void SetSpeed()
+    {
+        moveSpeed = 3f;
     }
 
     void OnTriggerEnter2D(Collider2D triggerCollider)

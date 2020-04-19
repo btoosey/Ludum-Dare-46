@@ -23,6 +23,14 @@ public class Plant : MonoBehaviour
         InvokeRepeating("TriggerThirst", 2f, 2f);
     }
 
+    void Update()
+    {
+        if (currentHealth == 0 || currentThirst == 0)
+        {
+            FindObjectOfType<GameManager>().GameOver();
+        }
+    }
+
     void TriggerDamage()
     {
         TakeDamage(1);
