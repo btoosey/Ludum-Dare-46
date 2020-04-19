@@ -19,8 +19,8 @@ public class Plant : MonoBehaviour
         currentThirst = plantMaxThirst;
         healthbar.SetMaxHealth(plantMaxHealth);
         thirstbar.SetMaxThirst(plantMaxThirst);
-        InvokeRepeating("TriggerDamage", 1f, 1f);
-        InvokeRepeating("TriggerThirst", 2f, 2f);
+        InvokeRepeating("TriggerDamage", 0.5f, 0.5f);
+        InvokeRepeating("TriggerThirst", 1f, 1f);
     }
 
     void Update()
