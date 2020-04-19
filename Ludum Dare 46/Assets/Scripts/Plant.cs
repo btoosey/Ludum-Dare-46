@@ -23,14 +23,6 @@ public class Plant : MonoBehaviour
         InvokeRepeating("TriggerThirst", 2f, 2f);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(1);
-        }
-    }
-
     void TriggerDamage()
     {
         TakeDamage(1);
@@ -64,5 +56,16 @@ public class Plant : MonoBehaviour
         }
 
         healthbar.SetHealth(currentHealth);
+    }
+
+    public void GainWater(int thirst)
+    {
+        currentThirst += thirst;
+        if (currentThirst > 30)
+        {
+            currentThirst = 30;
+        }
+
+        thirstbar.SetThirst(currentThirst);
     }
 }

@@ -34,5 +34,14 @@ public class PlayerMovement : MonoBehaviour
             Destroy(triggerCollider.gameObject);
             plant.GetComponent<Plant>().GainHealth(4);
         }
+        
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Drinkable")
+        {
+            plant.GetComponent<Plant>().GainWater(6);
+        }
     }
 }
